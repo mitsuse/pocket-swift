@@ -1,0 +1,21 @@
+#!/bin/bash
+
+exit_with_usage() {
+    echo "usage: $0 path"
+    exit 1
+}
+
+validate_argument() {
+    name=$1
+    value=$2
+
+    if [ -z "$value" ]; then
+        echo "error: ${name} is required."
+        exit_with_usage
+    fi
+}
+
+validate_argument path $1
+
+swiftlint autocorrect --path $1
+swiftlint lint --path $1
