@@ -4,8 +4,8 @@
     {
       "package": "APIKit",
       "reason": null,
-      "repositoryURL": "https://github.com/ishkawa/APIKit.git",
-      "version": "3.1.2"
+      "repositoryURL": "https://github.com/mitsuse/APIKit.git",
+      "version": "3.1.2+linux"
     },
     {
       "package": "Himotoki",
