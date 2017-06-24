@@ -3,7 +3,7 @@ import RxSwift
 import APIKit
 
 public protocol Client {
-    func postAdd(accessToken: String, url: URL, title: String?, tags: String?, tweetId: String) -> Single<AddResponse>
+    func postAdd(accessToken: String, url: URL, title: String?, tags: String?, tweetId: String) -> Single<PostAddResponse>
 }
 
 public struct ClientDefault {
@@ -15,9 +15,9 @@ public struct ClientDefault {
         self.session = session
     }
 
-    public func postAdd(accessToken: String, url: URL, title: String?, tags: String?, tweetId: String) -> Single<AddResponse> {
+    public func postAdd(accessToken: String, url: URL, title: String?, tags: String?, tweetId: String) -> Single<PostAddResponse> {
         return self.session.rx.send(
-            AddRequest(
+            PostAddRequest(
                 consumerKey: self.consumerKey,
                 accessToken: accessToken,
                 url: url,

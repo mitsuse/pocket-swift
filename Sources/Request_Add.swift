@@ -2,8 +2,8 @@ import Foundation
 import APIKit
 import Himotoki
 
-struct AddRequest: Request, Authorized {
-    typealias Response = AddResponse
+struct PostAddRequest: Request, Authorized {
+    typealias Response = PostAddResponse
 
     let method: HTTPMethod = .post
     let path = "/v3/add"
@@ -26,14 +26,14 @@ struct AddRequest: Request, Authorized {
     }
 }
 
-public struct AddResponse {
+public struct PostAddResponse {
     public let item: ItemJson
     public let status: Int
 }
 
-extension AddResponse: Decodable {
-    public static func decode(_ e: Extractor) throws -> AddResponse {
-        return try AddResponse(
+extension PostAddResponse: Decodable {
+    public static func decode(_ e: Extractor) throws -> PostAddResponse {
+        return try PostAddResponse(
             item: e <| "item",
             status: e <| "status"
         )
