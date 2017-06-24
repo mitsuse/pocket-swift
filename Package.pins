@@ -18,6 +18,12 @@
       "reason": null,
       "repositoryURL": "https://github.com/antitypical/Result.git",
       "version": "3.2.3"
+    },
+    {
+      "package": "RxSwift",
+      "reason": null,
+      "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+      "version": "3.5.0"
     }
   ],
   "version": 1

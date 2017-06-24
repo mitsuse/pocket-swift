@@ -2,36 +2,20 @@ import Foundation
 import APIKit
 import Himotoki
 
-public struct AddRequest: Request, Authorized {
-    public typealias Response = AddResponse
+struct AddRequest: Request, Authorized {
+    typealias Response = AddResponse
 
-    public let method: HTTPMethod = .post
-    public let path = "/v3/add"
+    let method: HTTPMethod = .post
+    let path = "/v3/add"
 
-    public let consumerKey: String
-    public let accessToken: String
-    public let url: URL
-    public let title: String?
-    public let tags: String?
-    public let tweetId: String?
+    let consumerKey: String
+    let accessToken: String
+    let url: URL
+    let title: String?
+    let tags: String?
+    let tweetId: String?
 
-    public init(
-        consumerKey: String,
-        accessToken: String,
-        url: URL,
-        title: String?,
-        tags: String?,
-        tweetId: String?
-    ) {
-        self.consumerKey = consumerKey
-        self.accessToken = accessToken
-        self.url = url
-        self.title = title
-        self.tags = tags
-        self.tweetId = tweetId
-    }
-
-    public var additionalParameters: [String: Any] {
+    var additionalParameters: [String: Any] {
         var parameters: [String: Any] = [
             "url": url.absoluteString,
         ]
