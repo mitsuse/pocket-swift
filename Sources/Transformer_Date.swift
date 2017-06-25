@@ -10,7 +10,8 @@ private let gmtDateFormatter: DateFormatter = {
     return dateFormatter
 }()
 
-let gmtDateTransformer = Transformer<String, Date> { s throws -> Date in
+let gmtDateTransformer = Transformer<String, Date?> { s throws -> Date? in
+    guard s != "0000-00-00 00:00:00" else { return nil }
     switch gmtDateFormatter.date(from: s) {
     case let .some(date): return date
     case .none: throw customError("Invalid string to translate: \(s)")
