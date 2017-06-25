@@ -1,24 +1,27 @@
 import Foundation
-import APIKit
 import Himotoki
 
-public protocol Request: APIKit.Request {
+protocol Request {
+    associatedtype Response
+
+    var method: HTTPMethod { get }
+    var baseURL: URL { get }
+    var path: String { get }
+    var headerFields: [String: String] { get }
+    var bodyParameters: [String: Any] { get }
+    var bodyEncoder: BodyEncoder { get }
+    var bodyDecoder: BodyDecoder { get }
+
+    func decode(responseBody object: Any, urlResponse: URLResponse) throws -> Response
 }
 
 extension Request {
-    public var baseURL: URL { return URL(string: "https://getpocket.com")! }
-
-    public var headerFields: [String: String] {
-        return [
-            "Accept": "application/json, */*",
-        ]
-    }
-
-    public var dataParser: DataParser { return JSONDataParser(readingOptions: []) }
+    var baseURL: URL { return URL(string: "https://getpocket.com")! }
+    var bodyParameters: [String: Any] { return [:] }
 }
 
 extension Request where Response: Decodable {
-    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+    func decode(responseBody object: Any, urlResponse: URLResponse) throws -> Response {
         return try decodeValue(object)
     }
 }
@@ -26,15 +29,15 @@ extension Request where Response: Decodable {
 public protocol Authorized {
     var consumerKey: String { get }
     var accessToken: String { get }
-    var additionalParameters: [String: Any] { get }
+    var additionalBodyParameters: [String: Any] { get }
 }
 
 extension Request where Self: Authorized {
-    public var bodyParameters: BodyParameters? {
+    var bodyParameters: [String: Any] {
         let authorizationParameters: [String: Any] = [
             "consumer_key": consumerKey,
             "access_token": accessToken,
         ]
-        return JSONBodyParameters(JSONObject: merge(authorizationParameters, additionalParameters))
+        return merge(authorizationParameters, additionalBodyParameters)
     }
 }

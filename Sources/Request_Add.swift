@@ -1,5 +1,4 @@
 import Foundation
-import APIKit
 import Himotoki
 
 struct PostAddRequest: Request, Authorized {
@@ -15,7 +14,17 @@ struct PostAddRequest: Request, Authorized {
     let tags: String?
     let tweetId: String?
 
-    var additionalParameters: [String: Any] {
+    var headerFields: [String: String] {
+        return [
+            "Accept": "application/json, */*",
+            "Content-Type": "application/json",
+        ]
+    }
+
+    var bodyEncoder: BodyEncoder { return JsonBodyEncoder() }
+    var bodyDecoder: BodyDecoder { return JsonBodyDecoder() }
+
+    var additionalBodyParameters: [String: Any] {
         var parameters: [String: Any] = [
             "url": url.absoluteString,
         ]
