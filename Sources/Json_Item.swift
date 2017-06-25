@@ -11,8 +11,8 @@ public struct ItemJson {
     public let responseCode: String
     public let mimeType: String
     public let encoding: String
-    public let dateResolved: Date
-    public let datePublished: Date
+    public let dateResolved: Date?
+    public let datePublished: Date?
     public let title: String
     public let excerpt: String
     public let hasImage: ResourceJson
