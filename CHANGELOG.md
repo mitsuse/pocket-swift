@@ -1,4 +1,4 @@
-## Unreleased
+## 0.1.6
 
 - Improve tests for `PostAddRequest`.
 - Fix: A value `"0000-00-00 00:00:00"` cannot be transformed into `Date`. It should be treated as `nil`.
