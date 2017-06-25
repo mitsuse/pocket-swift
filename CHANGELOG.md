@@ -1,3 +1,8 @@
+## Unreleased
+
+- Improve tests for `PostAddRequest`.
+
+
 ## 0.1.5
 
 - Avoid to cancel `URLSessionTask` on disposing subscription. Cancellation is not supported yet on Linux.

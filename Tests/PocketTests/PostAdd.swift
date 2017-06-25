@@ -24,4 +24,21 @@ final class PostAddTest: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
+
+    func testAddWithOptional() {
+        let url = URL(string: "https://github.com/mitsuse/pocket-swift")!
+        let title = UUID().uuidString
+        let tags = "foo,bar,baz"
+        let client = ClientDefault(consumerKey: Environment.consumerKey)
+        do {
+            let response =
+                try client
+                    .postAdd(accessToken: Environment.accessToken, url: url, title: title, tags: tags, tweetId: nil)
+                    .toBlocking()
+                    .first()
+            XCTAssertNotNil(response)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
 }
