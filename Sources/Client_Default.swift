@@ -37,7 +37,7 @@ public struct ClientDefault: Client {
                 }
             }
             task.resume()
-            return Disposables.create { [weak task] in task?.cancel() }
+            return Disposables.create()
         }
     }
 }
