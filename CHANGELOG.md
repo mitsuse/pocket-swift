@@ -1,3 +1,9 @@
+## 0.1.4
+
+- Remove APIKit from dependencies to compile on Linux.
+- Fix: `ClientDefault` should conform `Client` protocol.
+
+
 ## 0.1.3
 
 - Fix: A parameter `tweetId` for `Client.postAdd` should be optional.
